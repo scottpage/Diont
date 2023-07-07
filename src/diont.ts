@@ -3,12 +3,12 @@ import os from 'os';
 import { ALL_PORT, BROADCAST_HOST, MULTICAST_HOST, MULTICAST_TTL } from './constants';
 import { IDiontOptions, IEventCallback, IEvents, IExports, IMessage, IOptionalHostService, IService, IServiceInfo } from './types';
 
-const socket = dgram.createSocket({
-  type: 'udp4',
-  reuseAddr: true
-});
-
 export function Diont(options: Partial<IDiontOptions> = {}): IExports {
+  const socket = dgram.createSocket({
+    type: 'udp4',
+    reuseAddr: true
+  });
+
   const instanceId = guid();
 
   const serviceInfos: Record<string, IServiceInfo> = {};
