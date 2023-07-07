@@ -1,16 +1,12 @@
 import dgram from 'dgram';
 import os from 'os';
+import { ALL_PORT, BROADCAST_HOST, MULTICAST_HOST, MULTICAST_TTL } from './constants';
 import { IDiontOptions, IEventCallback, IEvents, IExports, IMessage, IOptionalHostService, IService, IServiceInfo } from './types';
 
 const socket = dgram.createSocket({
   type: 'udp4',
   reuseAddr: true
 });
-
-const MULTICAST_HOST = '224.0.0.236' as const;
-const BROADCAST_HOST = '255.255.255.255' as const;
-const ALL_PORT = 60540 as const;
-const MULTICAST_TTL = 1 as const; // Local network
 
 export function Diont(options: Partial<IDiontOptions> = {}): IExports {
   const instanceId = guid();
@@ -21,13 +17,13 @@ export function Diont(options: Partial<IDiontOptions> = {}): IExports {
     serviceRenounced: {}
   };
 
-  options = options || {};
+  options = options ?? {};
 
   const broadcast = options.broadcast;
 
   const multicastHost = options.host || MULTICAST_HOST;
-  const port = parseInt(options.port as unknown as string, 10) || ALL_PORT;
-  const ttl = options.ttl || MULTICAST_TTL;
+  const port = parseInt(options.port as unknown as string, 10) ?? ALL_PORT;
+  const ttl = options.ttl ?? MULTICAST_TTL;
   const sendHost = broadcast ? BROADCAST_HOST : multicastHost;
 
   // Services is a map (service.host+":"+service.port+":"+service.name) => Object serviceInfo
