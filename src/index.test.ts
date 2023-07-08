@@ -21,6 +21,7 @@ import { IServiceInfo } from './types';
               serviceListener.off('serviceAnnounced', listenerMessageReceivedHandlerId);
               const serviceAnnouncerService = serviceAnnouncer.getServiceInfos().find((s) => s.service.name.includes(serviceName));
               expect(serviceAnnouncerService).toBeDefined();
+              expect(serviceAnnouncerService).not.toBeNull();
               expect(serviceAnnouncerService).toHaveProperty('isOurService', true);
               expect(serviceAnnouncerService?.service).toHaveProperty('type', serviceType);
               expect(serviceAnnouncerService?.service).toHaveProperty('name', serviceName);
