@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
-    "module": "ESNext" /* Specify what module code is generated. */,
+    "module": "CommonJS" /* Specify what module code is generated. */,
     "allowJs": false /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */,
     "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
     "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
@@ -21,11 +21,11 @@
     "noFallthroughCasesInSwitch": true /* Enable error reporting for fallthrough cases in switch statements. */,
     "noUncheckedIndexedAccess": true /* Add 'undefined' to a type when accessed using an index. */,
     "noImplicitOverride": true /* Ensure overriding members in derived classes are marked with an override modifier. */,
-    "allowUnusedLabels": true /* Disable error reporting for unused labels. */,
-    "allowUnreachableCode": true /* Disable error reporting for unreachable code. */,
+    "allowUnusedLabels": false,
+    "allowUnreachableCode": false,
     "skipLibCheck": false,
-    "outDir": "./dist/",
-    "rootDir": "./src/",
+    "outDir": "./dist",
+    "rootDir": "./src",
     "moduleResolution": "node",
     "declaration": true,
     "sourceMap": true

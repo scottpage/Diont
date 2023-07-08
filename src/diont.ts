@@ -22,8 +22,8 @@ export function Diont(options: Partial<IDiontOptions> = {}): IExports {
   const broadcast = options.broadcast;
 
   const multicastHost = options.host || MULTICAST_HOST;
-  const port = parseInt(options.port as unknown as string, 10) ?? ALL_PORT;
-  const ttl = options.ttl ?? MULTICAST_TTL;
+  const port = parseInt(options.port as unknown as string, 10) || ALL_PORT;
+  const ttl = options.ttl || MULTICAST_TTL;
   const sendHost = broadcast ? BROADCAST_HOST : multicastHost;
 
   // Services is a map (service.host+":"+service.port+":"+service.name) => Object serviceInfo
@@ -114,7 +114,7 @@ export function Diont(options: Partial<IDiontOptions> = {}): IExports {
         }
       }
     } catch (e) {
-      // ignore...
+      console.error(e);
     }
   }
 
@@ -292,14 +292,17 @@ export function Diont(options: Partial<IDiontOptions> = {}): IExports {
   // Export
   // =====
 
+  const dispose = async () => {
+    if (!socket) return;
+    console.info('Closed!');
+    socket.off('listening', handleSocketListening);
+    socket.off('message', parseMessage);
+    await new Promise<void>((resolve) => socket.close(resolve));
+  };
+
   return {
-    [Symbol.asyncDispose]: async () => {
-      if (!socket) return;
-      console.info('Closed!');
-      socket.off('listening', handleSocketListening);
-      socket.off('message', parseMessage);
-      await new Promise<void>((resolve) => socket.close(resolve));
-    },
+    [Symbol.asyncDispose]: dispose,
+    dispose,
     announceService: exportAnnounceService,
     renounceService: exportRenounceService,
     repeatAnnouncements: exportRepeatAnnouncements,

@@ -45,4 +45,5 @@ export interface IExports extends AsyncDisposable {
   on: (eventName: IEvents, callback: IEventCallback) => string;
   off: (eventName: IEvents, callbackId: string) => boolean;
   getServiceInfos: () => IServiceInfo[];
+  dispose: () => Promise<void>;
 }

@@ -9,14 +9,13 @@
 	"types": "dist/index.d.ts",
 	"scripts": {
 		"prebuild": "npm run clean",
-		"build": "tsc",
+		"build": "tsc --project ./tsconfig-build.json",
 		"clean": "rimraf ./dist/",
-		"example:listener": "ts-node-esm ./examples/listener.ts",
-		"example:server:1": "ts-node-esm ./examples/server_1.ts",
-		"example:server:2": "ts-node-esm ./examples/server_2.ts",
-		"example:server:3:broadcast": "ts-node-esm ./examples/server_3_broadcast.ts"
+		"example:listener": "ts-node ./src/examples/listener.ts",
+		"example:server:1": "ts-node-esm ./src/examples/server_1.ts",
+		"example:server:2": "ts-node-esm ./src/examples/server_2.ts",
+		"example:server:3:broadcast": "ts-node-esm ./src/examples/server_3_broadcast.ts"
 	},
-	"type": "module",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/willemmulder/Diont"

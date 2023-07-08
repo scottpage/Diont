@@ -1,15 +1,17 @@
-import Diont from '../src/diont.js';
+import Diont from '../diont';
 
-const diont = Diont();
+const diont = Diont({
+  broadcast: true
+});
 
 // ======
 // Announce our own service
 // ======
 const service = {
-  name: 'TestServer 2',
+  name: 'TestServer 3',
   // host: "127.0.0.1", // defaults to the local IP
-  port: '1231',
-  someAdditionalInfo: 'Ja!'
+  port: '1233',
+  announcedViaBroadcast: 'Oh yes!'
   // any additional information is allowed
 };
 
