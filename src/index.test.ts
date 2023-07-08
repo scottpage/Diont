@@ -19,7 +19,11 @@ import { IServiceInfo } from './types';
           const handleListenerMessageReceived = async (serviceInfo: IServiceInfo) => {
             try {
               serviceListener.off('serviceAnnounced', listenerMessageReceivedHandlerId);
-              const serviceAnnouncerService = serviceAnnouncer.getServiceInfos().find((s) => s.service.name.includes(serviceName));
+              const serviceAnnouncerServiceInfos = serviceAnnouncer.getServiceInfos();
+              expect(serviceAnnouncerServiceInfos).toBeDefined();
+              expect(serviceAnnouncerServiceInfos).not.toBeNull();
+              expect(serviceAnnouncerServiceInfos).toHaveLength(1);
+              const serviceAnnouncerService = serviceAnnouncerServiceInfos.find((s) => s.service.name.includes(serviceName));
               expect(serviceAnnouncerService).toBeDefined();
               expect(serviceAnnouncerService).not.toBeNull();
               expect(serviceAnnouncerService).toHaveProperty('isOurService', true);
