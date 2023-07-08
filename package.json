@@ -18,7 +18,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/willemmulder/Diont"
+		"url": "https://github.com/scottpage/Diont"
 	},
 	"keywords": [
 		"typescript",
@@ -33,16 +33,13 @@
 		"local",
 		"network"
 	],
-	"author": "Willem Mulder",
-	"contributors": [
-		"kennarddh",
-		"Keyvan Fatehi"
-	],
+	"author": "Scott Page",
+	"contributors": [],
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/willemmulder/Diont/issues"
+		"url": "https://github.com/scottpage/Diont/issues"
 	},
-	"homepage": "https://github.com/willemmulder/Diont",
+	"homepage": "https://github.com/scottpage/Diont",
 	"devDependencies": {
 		"@types/node": "^20.4.0",
 		"prettier": "^3.0.0",

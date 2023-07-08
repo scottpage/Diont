@@ -1,11 +1,12 @@
 import Diont from '../diont';
+import { IOptionalHostService } from '../types';
 
 const diont = Diont();
 
 // ======
 // Announce our own service
 // ======
-const service = {
+const service: IOptionalHostService = {
   name: 'TestServer 1',
   host: '127.0.0.1', // defaults to the local IP
   port: '1231'

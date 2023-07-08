@@ -1,4 +1,5 @@
 import Diont from '../diont';
+import { IOptionalHostService } from '../types';
 
 const diont = Diont({
   broadcast: true
@@ -7,7 +8,7 @@ const diont = Diont({
 // ======
 // Announce our own service
 // ======
-const service = {
+const service: IOptionalHostService = {
   name: 'TestServer 3',
   // host: "127.0.0.1", // defaults to the local IP
   port: '1233',
