@@ -13,9 +13,9 @@ const service: IService = {
   // any additional information is allowed
 };
 
-diont.announceService(service);
+diont.announce(service);
 
 // Renounce after 5 seconds
 setTimeout(function () {
-  diont.renounceService(service);
+  diont.renounce(service);
 }, 5000);

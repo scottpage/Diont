@@ -14,11 +14,11 @@ const service: IOptionalHostService = {
   // any additional information is allowed
 };
 
-const id = diont.announceService(service);
+const id = diont.announce(service);
 
 // Renounce after 5 seconds
 setTimeout(function () {
   if (id) {
-    diont.renounceService(id);
+    diont.renounce(id);
   }
 }, 5000);

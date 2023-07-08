@@ -38,8 +38,8 @@ export type IMessage =
     };
 
 export interface IExports extends AsyncDisposable {
-  announceService: (service: IOptionalHostService) => `${string}:${string}:${string}` | null;
-  renounceService: (service: IService | `${string}:${string}:${string}`) => void;
+  announce: (service: IOptionalHostService) => `${string}:${string}:${string}` | null;
+  renounce: (service: IService | `${string}:${string}:${string}`) => void;
   repeatAnnouncements: () => void;
   queryForServices: () => void;
   on: (eventName: IEvents, callback: IEventCallback) => string;

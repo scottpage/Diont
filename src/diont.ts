@@ -189,7 +189,14 @@ export function Diont(options: Partial<IDiontOptions> = {}): IExports {
   };
 
   const exportGetServiceInfos = function (): IServiceInfo[] {
-    return JSON.parse(JSON.stringify(serviceInfos));
+    const parsedServiceInfos = JSON.parse(JSON.stringify(serviceInfos)) as Record<string, IServiceInfo>;
+    const retVal: IServiceInfo[] = [];
+    for (const serviceInfoKey in parsedServiceInfos) {
+      const service = parsedServiceInfos[serviceInfoKey];
+      if (!service) continue;
+      retVal.push(service as IServiceInfo);
+    }
+    return retVal;
   };
 
   // =====
@@ -275,7 +282,7 @@ export function Diont(options: Partial<IDiontOptions> = {}): IExports {
         if (details.family == 'IPv4' && details.internal === false) {
           addresses.push(details.address);
 
-          if (details.address.indexOf('192.168.') === 0) {
+          if (details.address.indexOf('10.0.') === 0 || details.address.indexOf('192.168.') === 0) {
             localAddress = details.address;
           }
         }
@@ -294,7 +301,6 @@ export function Diont(options: Partial<IDiontOptions> = {}): IExports {
 
   const dispose = async () => {
     if (!socket) return;
-    console.info('Closed!');
     socket.off('listening', handleSocketListening);
     socket.off('message', parseMessage);
     await new Promise<void>((resolve) => socket.close(resolve));
@@ -303,8 +309,8 @@ export function Diont(options: Partial<IDiontOptions> = {}): IExports {
   return {
     [Symbol.asyncDispose]: dispose,
     dispose,
-    announceService: exportAnnounceService,
-    renounceService: exportRenounceService,
+    announce: exportAnnounceService,
+    renounce: exportRenounceService,
     repeatAnnouncements: exportRepeatAnnouncements,
     queryForServices: exportQueryForServices,
     on: exportOn,
