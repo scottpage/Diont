@@ -48,7 +48,6 @@ export function Diont(options: Partial<IDiontOptions> = {}): IExports {
     queryForServices();
   };
   socket.on('listening', handleSocketListening);
-
   socket.on('message', parseMessage);
 
   /**
@@ -301,6 +300,7 @@ export function Diont(options: Partial<IDiontOptions> = {}): IExports {
 
   const dispose = async () => {
     if (!socket) return;
+    socket.dropMembership(multicastHost);
     socket.off('listening', handleSocketListening);
     socket.off('message', parseMessage);
     await new Promise<void>((resolve) => socket.close(resolve));
